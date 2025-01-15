@@ -6,3 +6,9 @@ helm install cert-manager jetstack/cert-manager \
   --namespace cert-manager \
   --version v1.13.1 \
   --set installCRDs=true
+
+kubectl apply -f clusterissuer.yaml
+
+kubectl apply -f certificate.yaml
+
+kubectl apply -f ingress.yaml
