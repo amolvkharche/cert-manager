@@ -20,6 +20,6 @@ spec:
         pathType: Prefix
         backend:
           service:
-            name: suse-observability-router  # Replace with the actual service name
+            name: suse-observability-router 
             port:
               number: 8080
