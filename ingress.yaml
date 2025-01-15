@@ -4,22 +4,23 @@ metadata:
   name: stackstate-ingress
   namespace: suse-observability
   annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-prod
     nginx.ingress.kubernetes.io/ssl-redirect: "true"
-    cert-manager.io/cluster-issuer: "letsencrypt-prod"  # Optional if using Cert-Manager
 spec:
   ingressClassName: nginx
   tls:
   - hosts:
-    - stackstate.209.38.124.11.nip.io
-    secretName: stackstate-tls  # If using a pre-created secret, else Cert-Manager will handle this
+    - stackstate.64.225.87.55.nip.io
+    secretName: stackstate-tls
   rules:
-  - host: stackstate.209.38.124.11.nip.io
+  - host: stackstate.64.225.87.55.nip.io
     http:
       paths:
       - path: /
         pathType: Prefix
         backend:
           service:
-            name: suse-observability-router 
+            name: suse-observability-router
             port:
               number: 8080
+
