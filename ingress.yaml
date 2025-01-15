@@ -5,7 +5,7 @@ metadata:
   namespace: suse-observability
   annotations:
     nginx.ingress.kubernetes.io/ssl-redirect: "true"
-    cert-manager.io/cluster-issuer: "letsencrypt-production"  # Optional if using Cert-Manager
+    cert-manager.io/cluster-issuer: "letsencrypt-prod"  # Optional if using Cert-Manager
 spec:
   ingressClassName: nginx
   tls:
