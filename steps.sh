@@ -1,3 +1,11 @@
+#!/bin/bash
+
+if [ -z "$1" ]; then
+  echo "Usage: ./steps.sh STACKSTATE_URL"
+  exit 1
+fi
+
+
 helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
 
 helm repo update
@@ -10,8 +18,15 @@ helm install ingress-nginx ingress-nginx/ingress-nginx \
 
 kubectl wait --namespace ingress-nginx --for=condition=ready pod --selector=app.kubernetes.io/component=controller  --timeout=60s
 
+
+STACKSTATE_URL=$1
+export STACKSTATE_URL
+
 kubectl apply -f clusterissuer.yaml
 
-kubectl apply -f certificate.yaml
+#envsubst < certificate.yaml | kubectl apply -f -
+sed "s|\${STACKSTATE_URL}|${STACKSTATE_URL}|g" certificate.yaml | kubectl apply -f -
 
-kubectl apply -f ingress.yaml
+#envsubst < ingress.yaml | kubectl apply -f -
+sed "s|\${STACKSTATE_URL}|${STACKSTATE_URL}|g" ingress.yaml | kubectl apply -f -
+
