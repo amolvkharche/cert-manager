@@ -10,10 +10,10 @@ spec:
   ingressClassName: nginx
   tls:
   - hosts:
-    - stackstate.64.225.87.55.nip.io
+    - ${STACKSTATE_URL}
     secretName: stackstate-tls
   rules:
-  - host: stackstate.64.225.87.55.nip.io
+  - host: ${STACKSTATE_URL}
     http:
       paths:
       - path: /
