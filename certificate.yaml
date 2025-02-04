@@ -4,9 +4,9 @@ metadata:
   name: stackstate-tls
   namespace: suse-observability
 spec:
-  secretName: stackstate-tls  # Name of the secret to store the certificate
+  secretName: stackstate-tls 
   issuerRef:
     name: letsencrypt-prod
-    kind: ClusterIssuer  # This assumes you're using Let's Encrypt. Update if different.
+    kind: ClusterIssuer  
   dnsNames:
     - ${STACKSTATE_URL}  
