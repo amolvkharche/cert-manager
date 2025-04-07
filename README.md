@@ -2,7 +2,7 @@
 
 Assuming you have stackstate installed without ingress. 
 ```bash 
-chmod +x steps.sh
+chmod +x script.sh
 ./script.sh STACKSTATE_URL
 ```
 Example
